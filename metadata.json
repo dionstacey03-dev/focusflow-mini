@@ -1,0 +1,6 @@
+{
+  "name": "FocusFlow Mini",
+  "description": "Mobile-first Pomodoro timer and task management app with daily progress tracking, dark theme, and localStorage persistence.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
