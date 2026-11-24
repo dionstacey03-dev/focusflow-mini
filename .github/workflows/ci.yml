@@ -1,0 +1,30 @@
+name: FocusFlow Mini CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: focusflow-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      # This repository does not currently commit a package-lock.json.
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+      - name: Run TypeScript checks
+        run: npm run lint
+      - name: Build production bundle
+        run: npm run build
